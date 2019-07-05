@@ -215,7 +215,8 @@
 		onBeforeOpen : function( pileName ) { return false; },
 		onAfterOpen : function( pileName, totalItems ) { return false; },
 		onBeforeClose : function( pileName ) { return false; },
-		onAfterClose : function( pileName, totalItems ) { return false; }
+		onAfterClose : function( pileName, totalItems ) { return false; },
+		onReady : function() { return false; }
 	};
 
 	$.Stapel.prototype = {
@@ -299,7 +300,7 @@
 				}
 
 			} );
-
+			self.options.onReady();
 		},
 		_layout : function() {
 
