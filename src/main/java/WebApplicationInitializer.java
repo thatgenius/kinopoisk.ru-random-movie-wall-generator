@@ -4,6 +4,8 @@ import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -27,7 +29,7 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
     @Configuration
     @EnableWebMvc
     @ComponentScan(basePackages = "controller", includeFilters = @Filter(Controller.class), useDefaultFilters = false)
-    public static class ServletContextConfiguration {
+    public static class ServletContextConfiguration extends WebMvcConfigurerAdapter {
 
         @Bean
         public InternalResourceViewResolver viewResolver() {
@@ -35,6 +37,11 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
             resolver.setPrefix("/WEB-INF/pages/");
             resolver.setSuffix(".jsp");
             return resolver;
+        }
+
+        @Override
+        public void addResourceHandlers(ResourceHandlerRegistry registry) {
+            registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
         }
     }
 }
