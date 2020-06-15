@@ -8,7 +8,7 @@
     <name>random-movie-wall-generator</name>
 
     <properties>
-        <spring.mvc>4.1.1.RELEASE</spring.mvc>
+        <spring.mvc>5.2.7.RELEASE</spring.mvc>
     </properties>
 
     <dependencies>
